@@ -517,6 +517,7 @@
       dataType = data.datatype ? data.datatype : "html";
 
       load = $.proxy(function() {
+        console.log('load URL: ', url);
         $.ajax(url, {
           method: method,
           dataType: dataType,
@@ -652,7 +653,7 @@
             } else {
               errors = QOR_Translations.serverError;
             }
-            window.alert(errors);
+            window.alert("",errors);
           }, this)
         });
       }, this);

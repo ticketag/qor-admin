@@ -2,11 +2,17 @@
 {{$result := .Result}}
 {{$allowed_actions := (allowed_actions $context.Resource.GetActions $context.Action $result)}}
 {{$resource := .Resource}}
-
+<script>
+  var IsSingleton = null;
+  try{
+    IsSingleton ={{$resource.Config.Singleton}};
+  }catch(e){}
+</script>
 {{if gt (len $allowed_actions) 0 }}
   <div class="qor-action-forms" data-toggle="qor.action.bulk">
     {{range $action := $allowed_actions}}
       {{render_with "shared/action_item" (to_map "Action" $action "Result" $result "Context" $context "Resource" $resource)}}
     {{end}}
   </div>
+
 {{end}}

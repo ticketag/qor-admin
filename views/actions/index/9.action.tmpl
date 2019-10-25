@@ -17,7 +17,6 @@
     </div>
   </div>
 {{end}}
-
 {{$collection_actions := (allowed_actions $context.Resource.GetActions "collection")}}
 {{if gt (len $collection_actions) 0 }}
   <div class="qor-actions qor-collection-actions" style="float: right">

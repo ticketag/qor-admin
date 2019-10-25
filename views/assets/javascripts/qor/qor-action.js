@@ -99,6 +99,7 @@
         },
 
         actionSubmit: function($action) {
+
             this.submit($action);
             return false;
         },
@@ -185,6 +186,7 @@
         clickAjaxButton: function(e) {
             let $target = $(e.target);
 
+
             this.collectFormData();
             this.ajaxForm.properties = $target.data();
             this.submit($target);
@@ -204,6 +206,7 @@
         },
 
         submit: function($actionButton) {
+
             let _this = this,
                 ajaxForm = this.ajaxForm || {},
                 properties = ajaxForm.properties || $actionButton.data();

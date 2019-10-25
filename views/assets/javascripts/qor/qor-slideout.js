@@ -443,6 +443,7 @@
               errors = QOR_Translations.serverError;
             }
             window.alert(errors);
+
           }, this)
         });
       }, this);
