@@ -50,6 +50,8 @@
 
             // Should destroy all components here
             $template.trigger('disable');
+            // remove data-select2-id attribute or select2 will disable all previous instance
+            $template.find('[data-toggle="qor.chooser"]').removeAttr('data-select2-id');
 
             // if have isMultiple data value or template length large than 1
             this.isMultipleTemplate = $element.data('isMultiple');
@@ -69,8 +71,7 @@
 
                 this.parseMultiple();
             } else {
-                this.template = $template.prop('outerHTML');
-                this.parse();
+                this.parse($template.prop('outerHTML'));
             }
 
             $template.hide();
@@ -113,13 +114,13 @@
             }
         },
 
-        parse: function() {
+        parse: function($tmp) {
             let template;
 
-            if (!this.template) {
+            if (!$tmp) {
                 return;
             }
-            template = this.initTemplate(this.template);
+            template = this.initTemplate($tmp);
 
             this.template = template.template;
             this.index = template.index;
@@ -288,6 +289,10 @@
         addSingle: function() {
             let $item,
                 $element = this.$element;
+
+            if (!this.template) {
+                return;
+            }
 
             $item = $(this.template.replace(/\{\{index\}\}/g, this.index));
             // add order property for sortable fieldset
